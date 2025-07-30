@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "cloudDev", "cloudDev\cloudDev.csproj", "{CAA83699-CBB7-42CD-99C5-50C0EE6B0F37}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CAA83699-CBB7-42CD-99C5-50C0EE6B0F37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CAA83699-CBB7-42CD-99C5-50C0EE6B0F37}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CAA83699-CBB7-42CD-99C5-50C0EE6B0F37}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CAA83699-CBB7-42CD-99C5-50C0EE6B0F37}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

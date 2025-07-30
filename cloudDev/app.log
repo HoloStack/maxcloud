@@ -1,0 +1,30 @@
+Using launch settings from /Users/demonkoi/RiderProjects/cloudDev/cloudDev/Properties/launchSettings.json...
+Building...
+🌱 Initializing database...
+Admin user already exists.
+✅ Database initialization completed!
+info: Microsoft.Hosting.Lifetime[14]
+      Now listening on: http://localhost:5112
+info: Microsoft.Hosting.Lifetime[0]
+      Application started. Press Ctrl+C to shut down.
+info: Microsoft.Hosting.Lifetime[0]
+      Hosting environment: Development
+info: Microsoft.Hosting.Lifetime[0]
+      Content root path: /Users/demonkoi/RiderProjects/cloudDev/cloudDev
+warn: Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware[3]
+      Failed to determine the https port for redirect.
+info: Microsoft.Hosting.Lifetime[0]
+      Application is shutting down...
+net/assignment/20250729-213605-f10ec63a-1cc6-4079-812b-624d41e69aaf.mp4
+Attempting to download blob from: https://venuenew.blob.core.windows.net/assignment/20250729-213605-f10ec63a-1cc6-4079-812b-624d41e69aaf.mp4
+Successfully retrieved blob - ContentType: video/mp4, FileName: 13096728-uhd_2160_3840_24fps.mp4
+Setting video-specific headers
+Returning file with contentType: video/mp4
+ImageController.Serve called with URL: https://venuenew.blob.core.windows.net/assignment/20250729-213605-f10ec63a-1cc6-4079-812b-624d41e69aaf.mp4
+Attempting to download blob from: https://venuenew.blob.core.windows.net/assignment/info: Microsoft.Hosting.Lifetime[0]
+      Application is shutting down...
+ieved blob - ContentType: video/mp4, FileName: 13096728-uhd_2160_3840_24fps.mp4
+Setting video-specific headers
+Returning file with contentType: video/mp4
+info: Microsoft.Hosting.Lifetime[0]
+      Application is shutting down...

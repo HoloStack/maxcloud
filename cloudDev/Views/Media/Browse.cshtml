@@ -1,0 +1,251 @@
+@model MediaBrowserViewModel
+@{
+    ViewData["Title"] = "Media Gallery";
+}
+
+<div class="row">
+    <div class="col-12">
+        <h2><i class="fas fa-photo-video"></i> Media Gallery</h2>
+        
+        <!-- Category Tabs -->
+        <ul class="nav nav-tabs media-tabs mb-4" id="mediaTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="all-tab" data-bs-toggle="tab" data-bs-target="#all" type="button" role="tab">
+                    <i class="fas fa-th"></i> All (@(Model.Images.Count + Model.Videos.Count + Model.Audio.Count))
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="images-tab" data-bs-toggle="tab" data-bs-target="#images" type="button" role="tab">
+                    <i class="fas fa-images"></i> Images (@Model.Images.Count)
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="videos-tab" data-bs-toggle="tab" data-bs-target="#videos" type="button" role="tab">
+                    <i class="fas fa-video"></i> Videos (@Model.Videos.Count)
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="audio-tab" data-bs-toggle="tab" data-bs-target="#audio" type="button" role="tab">
+                    <i class="fas fa-music"></i> Audio (@Model.Audio.Count)
+                </button>
+            </li>
+        </ul>
+        
+        <!-- Tab Content -->
+        <div class="tab-content" id="mediaTabContent">
+            <!-- All Media Tab -->
+            <div class="tab-pane fade show active" id="all" role="tabpanel">
+                @await Html.PartialAsync("_MediaGrid", Model.Images.Concat(Model.Videos).Concat(Model.Audio))
+            </div>
+            
+            <!-- Images Tab -->
+            <div class="tab-pane fade" id="images" role="tabpanel">
+                @if (Model.Images.Any())
+                {
+                    <div class="row">
+                        @foreach (var image in Model.Images)
+                        {
+                            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                <div class="card">
+                                    <img src="@Url.Action("Serve", "Image", new { url = image.Url })" class="card-img-top" alt="@image.FileName" style="height: 200px; object-fit: cover;">
+                                    <div class="card-body p-2">
+                                        <h6 class="card-title text-truncate" title="@image.DisplayName">@image.DisplayName</h6>
+                                        <small class="text-muted">@(image.FileSize / 1024) KB</small>
+                                        <div class="btn-group w-100 mt-2" role="group">
+                                            <a href="@Url.Action("Serve", "Image", new { url = image.Url })" class="btn btn-outline-primary btn-sm" target="_blank">
+                                                <i class="fas fa-eye"></i>
+                                            </a>
+                                            <a href="@Url.Action("Download", "Image", new { url = image.Url })" class="btn btn-outline-success btn-sm">
+                                                <i class="fas fa-download"></i>
+                                            </a>
+                                            @if (User.Identity.IsAuthenticated)
+                                            {
+                                                <button class="btn btn-outline-danger btn-sm" onclick="deleteFile('@image.Url')">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                }
+                else
+                {
+                    <div class="text-center py-5">
+                        <i class="fas fa-images fa-3x text-muted mb-3"></i>
+                        <h4>No images found</h4>
+                        <p class="text-muted">Upload some images to get started!</p>
+                    </div>
+                }
+            </div>
+            
+            <!-- Videos Tab -->
+            <div class="tab-pane fade" id="videos" role="tabpanel">
+                @if (Model.Videos.Any())
+                {
+                    <div class="row">
+                        @foreach (var video in Model.Videos)
+                        {
+                            <div class="col-lg-4 col-md-6 mb-4">
+                                <div class="card">
+                                    <video class="card-img-top" style="height: 200px; object-fit: cover;" controls>
+                                        <source src="@Url.Action("Serve", "Image", new { url = video.Url })" type="@video.ContentType">
+                                        Your browser does not support the video tag.
+                                    </video>
+                                    <div class="card-body p-2">
+                                        <h6 class="card-title text-truncate" title="@video.DisplayName">@video.DisplayName</h6>
+                                        <small class="text-muted">@(video.FileSize / (1024 * 1024)) MB</small>
+                                        <div class="btn-group w-100 mt-2" role="group">
+                                            <a href="@Url.Action("Serve", "Image", new { url = video.Url })" class="btn btn-outline-primary btn-sm" target="_blank">
+                                                <i class="fas fa-external-link-alt"></i>
+                                            </a>
+                                            <a href="@Url.Action("Download", "Image", new { url = video.Url })" class="btn btn-outline-success btn-sm">
+                                                <i class="fas fa-download"></i>
+                                            </a>
+                                            @if (User.Identity.IsAuthenticated)
+                                            {
+                                                <button class="btn btn-outline-danger btn-sm" onclick="deleteFile('@video.Url')">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                }
+                else
+                {
+                    <div class="text-center py-5">
+                        <i class="fas fa-video fa-3x text-muted mb-3"></i>
+                        <h4>No videos found</h4>
+                        <p class="text-muted">Upload some videos to get started!</p>
+                    </div>
+                }
+            </div>
+            
+            <!-- Audio Tab -->
+            <div class="tab-pane fade" id="audio" role="tabpanel">
+                @if (Model.Audio.Any())
+                {
+                    <div class="row">
+                        @foreach (var audio in Model.Audio)
+                        {
+                            <div class="col-lg-4 col-md-6 mb-4">
+                                <div class="card">
+                                    <div class="card-img-top bg-light d-flex align-items-center justify-content-center" style="height: 200px;">
+                                        <div class="text-center">
+                                            <i class="fas fa-music fa-3x text-muted mb-3"></i>
+                                            <audio controls class="w-100">
+                                                <source src="@Url.Action("Serve", "Image", new { url = audio.Url })" type="@audio.ContentType">
+                                                Your browser does not support the audio element.
+                                            </audio>
+                                        </div>
+                                    </div>
+                                    <div class="card-body p-2">
+                                        <h6 class="card-title text-truncate" title="@audio.DisplayName">@audio.DisplayName</h6>
+                                        <small class="text-muted">@(audio.FileSize / (1024 * 1024)) MB</small>
+                                        <div class="btn-group w-100 mt-2" role="group">
+                                            <a href="@Url.Action("Serve", "Image", new { url = audio.Url })" class="btn btn-outline-primary btn-sm" target="_blank">
+                                                <i class="fas fa-external-link-alt"></i>
+                                            </a>
+                                            <a href="@Url.Action("Download", "Image", new { url = audio.Url })" class="btn btn-outline-success btn-sm">
+                                                <i class="fas fa-download"></i>
+                                            </a>
+                                            @if (User.Identity.IsAuthenticated)
+                                            {
+                                                <button class="btn btn-outline-danger btn-sm" onclick="deleteFile('@audio.Url')">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                }
+                else
+                {
+                    <div class="text-center py-5">
+                        <i class="fas fa-music fa-3x text-muted mb-3"></i>
+                        <h4>No audio files found</h4>
+                        <p class="text-muted">Upload some audio files to get started!</p>
+                    </div>
+                }
+            </div>
+        </div>
+        
+        @if (User.Identity.IsAuthenticated)
+        {
+            <div class="text-center mt-4">
+                <a href="@Url.Action("Upload")" class="btn btn-primary btn-lg">
+                    <i class="fas fa-cloud-upload-alt"></i> Upload New Media
+                </a>
+            </div>
+        }
+    </div>
+</div>
+
+<!-- Video Modal -->
+<div class="modal fade" id="videoModal" tabindex="-1" aria-labelledby="videoModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="videoModalLabel">Video Player</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                <video id="modalVideo" class="w-100" controls style="max-height: 70vh;">
+                    <source id="modalVideoSource" src="" type="">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function deleteFile(url) {
+            if (confirm('Are you sure you want to delete this file? This action cannot be undone.')) {
+                $.ajax({
+                    url: '@Url.Action("Delete", "Media")',
+                    type: 'POST',
+                    data: { url: url },
+                    success: function(result) {
+                        if (result.success) {
+                            location.reload();
+                        } else {
+                            alert('Error deleting file: ' + result.message);
+                        }
+                    },
+                    error: function() {
+                        alert('Error deleting file');
+                    }
+                });
+            }
+        }
+        
+        function openVideoModal(videoUrl, title) {
+            // Set video source and title
+            $('#modalVideoSource').attr('src', videoUrl);
+            $('#modalVideo')[0].load(); // Reload the video element
+            $('#videoModalLabel').text(title || 'Video Player');
+            
+            // Show the modal
+            var videoModal = new bootstrap.Modal(document.getElementById('videoModal'));
+            videoModal.show();
+        }
+        
+        // Clean up video when modal is closed
+        $('#videoModal').on('hidden.bs.modal', function () {
+            var video = $('#modalVideo')[0];
+            video.pause();
+            video.currentTime = 0;
+        });
+    </script>
+}

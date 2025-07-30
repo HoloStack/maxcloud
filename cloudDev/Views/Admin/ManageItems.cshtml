@@ -1,0 +1,219 @@
+@using cloudDev.Helpers
+@model ManageItemsViewModel
+@{
+    ViewData["Title"] = "Manage Items";
+}
+
+<div class="row">
+    <div class="col-12">
+        <h2><i class="fas fa-boxes"></i> Manage Items</h2>
+        
+        <!-- Statistics Cards -->
+        <div class="row mb-4">
+            <div class="col-md-3">
+                <div class="card bg-primary text-white">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <h4>@Model.TotalItems</h4>
+                                <p class="mb-0">Total Items</p>
+                            </div>
+                            <div class="align-self-center">
+                                <i class="fas fa-box fa-2x"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card bg-warning text-white">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <h4>@Model.LowStockItems</h4>
+                                <p class="mb-0">Low Stock Items</p>
+                            </div>
+                            <div class="align-self-center">
+                                <i class="fas fa-exclamation-triangle fa-2x"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card bg-success text-white">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <h4>@CurrencyHelper.FormatAsRand(Model.TotalInventoryValue)</h4>
+                                <p class="mb-0">Inventory Value</p>
+                            </div>
+                            <div class="align-self-center">
+                                <i class="fas fa-dollar-sign fa-2x"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card bg-info text-white">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <a href="@Url.Action("AddItem", "Items")" class="btn btn-light btn-sm">
+                                    <i class="fas fa-plus"></i> Add New Item
+                                </a>
+                            </div>
+                            <div class="align-self-center">
+                                <i class="fas fa-plus-circle fa-2x"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Search and Filter -->
+        <div class="card mb-4">
+            <div class="card-body">
+                <form method="get" asp-action="ManageItems">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label for="searchQuery" class="form-label">Search Items</label>
+                            <input type="text" class="form-control" id="searchQuery" name="searchQuery" value="@Model.SearchQuery" placeholder="Search by name or description...">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="category" class="form-label">Category</label>
+                            <select class="form-select" id="category" name="category">
+                                <option value="">All Categories</option>
+                                <option value="Electronics" selected="@(Model.SelectedCategory == "Electronics")">Electronics</option>
+                                <option value="Clothing" selected="@(Model.SelectedCategory == "Clothing")">Clothing</option>
+                                <option value="Models" selected="@(Model.SelectedCategory == "Models")">Models</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3 d-flex align-items-end">
+                            <button type="submit" class="btn btn-primary me-2">Filter</button>
+                            <a href="@Url.Action("ManageItems")" class="btn btn-outline-secondary">Clear</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Items Table -->
+        @if (Model.Items.Any())
+        {
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>Image</th>
+                                    <th>Name</th>
+                                    <th>Category</th>
+                                    <th>Price</th>
+                                    <th>Stock</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.Items)
+                                {
+                                    <tr class="@(item.quantity <= 5 ? "table-warning" : "")">
+                                        <td>
+                                            @if (!string.IsNullOrEmpty(item.Image))
+                                            {
+                                                <img src="@Url.Action("Serve", "Image", new { url = item.Image })" alt="@item.Name" class="img-thumbnail" style="width: 50px; height: 50px; object-fit: cover;">
+                                            }
+                                            else
+                                            {
+                                                <div class="bg-light rounded d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                                                    <i class="fas fa-image text-muted"></i>
+                                                </div>
+                                            }
+                                        </td>
+                                        <td>
+                                            <strong>@item.Name</strong><br>
+                                            <small class="text-muted">@(string.IsNullOrEmpty(item.Description) ? "No description" : (item.Description.Length > 50 ? item.Description.Substring(0, 50) + "..." : item.Description))</small>
+                                        </td>
+                                        <td><span class="badge bg-secondary">@item.Category</span></td>
+                                        <td class="fw-bold text-success">@CurrencyHelper.FormatAsRand(item.price)</td>
+                                        <td>
+                                            <span class="badge @(item.quantity <= 5 ? "bg-warning" : item.quantity == 0 ? "bg-danger" : "bg-success")">
+                                                @item.quantity
+                                            </span>
+                                        </td>
+                                        <td>
+                                            @if (item.quantity == 0)
+                                            {
+                                                <span class="badge bg-danger">Out of Stock</span>
+                                            }
+                                            else if (item.quantity <= 5)
+                                            {
+                                                <span class="badge bg-warning text-dark">Low Stock</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="badge bg-success">In Stock</span>
+                                            }
+                                        </td>
+                                        <td>
+                                            <div class="btn-group" role="group">
+                                                <a href="@Url.Action("EditItem", new { id = item.RowKey })" class="btn btn-outline-primary btn-sm" title="Edit">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                                <a href="@Url.Action("UpdateStock", new { id = item.RowKey })" class="btn btn-outline-info btn-sm" title="Update Stock">
+                                                    <i class="fas fa-warehouse"></i>
+                                                </a>
+                                                <button class="btn btn-outline-danger btn-sm" onclick="deleteItem('@item.RowKey', '@item.Name')" title="Delete">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="text-center py-5">
+                <i class="fas fa-box-open fa-3x text-muted mb-3"></i>
+                <h4>No items found</h4>
+                <p class="text-muted">Add some items to get started!</p>
+                <a href="@Url.Action("AddItem", "Items")" class="btn btn-primary">
+                    <i class="fas fa-plus"></i> Add New Item
+                </a>
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function deleteItem(itemId, itemName) {
+            if (confirm(`Are you sure you want to delete "${itemName}"? This action cannot be undone.`)) {
+                $.ajax({
+                    url: '@Url.Action("DeleteItem", "Admin")',
+                    type: 'POST',
+                    data: { id: itemId },
+                    success: function(result) {
+                        if (result.success) {
+                            location.reload();
+                        } else {
+                            alert('Error deleting item: ' + result.message);
+                        }
+                    },
+                    error: function() {
+                        alert('Error deleting item');
+                    }
+                });
+            }
+        }
+    </script>
+}

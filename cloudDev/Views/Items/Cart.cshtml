@@ -1,0 +1,136 @@
+@using cloudDev.Helpers
+@model CartViewModel
+@{
+    ViewData["Title"] = "Shopping Cart";
+}
+
+<div class="row">
+    <div class="col-12">
+        <h2><i class="fas fa-shopping-cart"></i> Your Shopping Cart</h2>
+        
+        @if (Model.Items.Any())
+        {
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
+                                    <th>Total</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.Items)
+                                {
+                                    <tr id="cart-item-@item.ItemId">
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                @if (!string.IsNullOrEmpty(item.ItemImage))
+                                                {
+                                                    <img src="@Url.Action("Serve", "Image", new { url = item.ItemImage })" alt="@item.ItemName" class="img-thumbnail me-3" style="width: 60px; height: 60px; object-fit: cover;">
+                                                }
+                                                else
+                                                {
+                                                    <div class="bg-light rounded me-3 d-flex align-items-center justify-content-center" style="width: 60px; height: 60px;">
+                                                        <i class="fas fa-image text-muted"></i>
+                                                    </div>
+                                                }
+                                                <div>
+                                                    <h6 class="mb-0">@item.ItemName</h6>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>@CurrencyHelper.FormatAsRand(item.ItemPrice)</td>
+                                        <td>
+                                            <div class="input-group" style="width: 120px;">
+                                                <button class="btn btn-outline-secondary btn-sm" type="button" onclick="updateQuantity('@item.ItemId', @(item.Quantity - 1))">-</button>
+                                                <input type="number" class="form-control form-control-sm text-center" value="@item.Quantity" min="1" id="qty-@item.ItemId" onchange="updateQuantity('@item.ItemId', this.value)">
+                                                <button class="btn btn-outline-secondary btn-sm" type="button" onclick="updateQuantity('@item.ItemId', @(item.Quantity + 1))">+</button>
+                                            </div>
+                                        </td>
+                                        <td class="fw-bold">@CurrencyHelper.FormatAsRand(item.Total)</td>
+                                        <td>
+                                            <form asp-action="RemoveFromCart" method="post" class="d-inline" onsubmit="return confirm('Remove this item from cart?')">
+                                                <input type="hidden" name="itemId" value="@item.ItemId" />
+                                                <button type="submit" class="btn btn-outline-danger btn-sm">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                            <tfoot class="table-light">
+                                <tr>
+                                    <th colspan="3" class="text-end">Grand Total:</th>
+                                    <th class="text-primary">@CurrencyHelper.FormatAsRand(Model.GrandTotal)</th>
+                                    <th></th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                    
+                    <div class="d-flex justify-content-between mt-3">
+                        <a href="@Url.Action("Index", "Home")" class="btn btn-outline-primary">
+                            <i class="fas fa-arrow-left"></i> Continue Shopping
+                        </a>
+                        <form asp-action="Checkout" method="post" class="d-inline">
+                            <button type="submit" class="btn btn-success btn-lg">
+                                <i class="fas fa-credit-card"></i> Checkout - @CurrencyHelper.FormatAsRand(Model.GrandTotal)
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="text-center py-5">
+                <i class="fas fa-shopping-cart fa-3x text-muted mb-3"></i>
+                <h4>Your cart is empty</h4>
+                <p class="text-muted">Start shopping to add items to your cart!</p>
+                <a href="@Url.Action("Index", "Home")" class="btn btn-primary">
+                    <i class="fas fa-shopping-bag"></i> Browse Products
+                </a>
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function updateQuantity(itemId, quantity) {
+            if (quantity < 1) {
+                if (confirm('Remove this item from cart?')) {
+                    quantity = 0;
+                } else {
+                    document.getElementById('qty-' + itemId).value = 1;
+                    return;
+                }
+            }
+            
+            $.ajax({
+                url: '@Url.Action("UpdateCartQuantity", "Items")',
+                type: 'POST',
+                data: {
+                    itemId: itemId,
+                    quantity: quantity
+                },
+                success: function(result) {
+                    if (result.success) {
+                        location.reload();
+                    } else {
+                        alert('Error updating cart: ' + result.message);
+                    }
+                },
+                error: function() {
+                    alert('Error updating cart');
+                }
+            });
+        }
+    </script>
+}

@@ -1,0 +1,53 @@
+@using cloudDev.Services
+@model IEnumerable<MultimediaFileInfo>
+
+<div class="row">
+    @foreach (var file in Model)
+    {
+        <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+            <div class="card">
+                @if (file.FileType == "Image")
+                {
+                    <img src="@Url.Action("Serve", "Image", new { url = file.Url })" class="card-img-top" alt="@file.FileName" style="height: 150px; object-fit: cover;">
+                }
+                else if (file.FileType == "Video")
+                {
+                    <div class="card-img-top bg-dark d-flex align-items-center justify-content-center position-relative" style="height: 150px; cursor: pointer;" onclick="openVideoModal('@Url.Action("Serve", "Image", new { url = file.Url })', '@file.DisplayName')">
+                        <i class="fas fa-play-circle fa-4x text-white"></i>
+                        <div class="position-absolute bottom-0 start-0 bg-dark bg-opacity-75 text-white px-2 py-1">
+                            <small><i class="fas fa-video me-1"></i>Video</small>
+                        </div>
+                    </div>
+                }
+                else if (file.FileType == "Audio")
+                {
+                    <div class="card-img-top bg-light d-flex align-items-center justify-content-center" style="height: 150px;">
+                        <i class="fas fa-music fa-3x text-muted"></i>
+                        <div class="position-absolute bottom-0 start-0 bg-dark bg-opacity-75 text-white px-2 py-1">
+                            <small><i class="fas fa-music me-1"></i>Audio</small>
+                        </div>
+                    </div>
+                }
+
+                <div class="card-body p-2">
+                    <h6 class="card-title text-truncate" title="@file.DisplayName">@file.DisplayName</h6>
+                    <small class="text-muted">@(file.FileSize / 1024) KB</small>
+                    <div class="btn-group w-100 mt-2" role="group">
+                        <a href="@Url.Action("Serve", "Image", new { url = file.Url })" class="btn btn-outline-primary btn-sm" target="_blank">
+                            <i class="fas fa-eye"></i>
+                        </a>
+                        <a href="@Url.Action("Download", "Image", new { url = file.Url })" class="btn btn-outline-success btn-sm">
+                            <i class="fas fa-download"></i>
+                        </a>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <button class="btn btn-outline-danger btn-sm" onclick="deleteFile('@file.Url')">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

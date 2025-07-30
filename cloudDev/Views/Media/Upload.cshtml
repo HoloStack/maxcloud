@@ -1,0 +1,116 @@
+@model UploadMediaViewModel
+@{
+    ViewData["Title"] = "Upload Media";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title mb-0"><i class="fas fa-cloud-upload-alt"></i> Upload New Media</h3>
+            </div>
+            <div class="card-body">
+<form id="uploadForm" asp-action="Upload" method="post" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                    <div class="mb-3">
+                        <label asp-for="MediaFile" class="form-label">Media File</label>
+                        <input asp-for="MediaFile" class="form-control" type="file" accept="image/*,video/*,audio/*" />
+                        <div class="form-text">Supported formats: Images (JPG, PNG, GIF, etc.), Videos (MP4, AVI, etc.), Audio (MP3, WAV, etc.)</div>
+                        <span asp-validation-for="MediaFile" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Description" class="form-label">Title/Description</label>
+                        <input asp-for="Description" class="form-control" placeholder="e.g., 'Brown pants', 'Video of woman sipping coffee'" />
+                        <div class="form-text">Provide a descriptive title for this media file. If left empty, the filename will be used.</div>
+                    </div>
+                    
+                    <div class="progress mb-3" style="display: none;">
+                        <div id="upload-progress-bar" class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+                    </div>
+
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <a href="@Url.Action("Browse")" class="btn btn-outline-secondary me-md-2">Cancel</a>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-upload"></i> Upload File
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    
+    <script>
+        $(document).ready(function() {
+            $('#uploadForm').on('submit', function(e) {
+                e.preventDefault();
+                
+                var formData = new FormData(this);
+                var progressBar = $('.progress');
+                var progressBarInner = $('#upload-progress-bar');
+                var submitButton = $('button[type="submit"]');
+                var originalButtonText = submitButton.html();
+                
+                // Show progress bar and disable submit button
+                progressBar.show();
+                submitButton.prop('disabled', true).html('<i class="fas fa-spinner fa-spin"></i> Uploading...');
+                
+                // Create XMLHttpRequest for upload progress
+                $.ajax({
+                    url: $(this).attr('action'),
+                    type: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    },
+                    xhr: function() {
+                        var xhr = new window.XMLHttpRequest();
+                        
+                        // Upload progress
+                        xhr.upload.addEventListener('progress', function(e) {
+                            if (e.lengthComputable) {
+                                var percentComplete = Math.round((e.loaded / e.total) * 100);
+                                progressBarInner.css('width', percentComplete + '%')
+                                    .attr('aria-valuenow', percentComplete)
+                                    .text(percentComplete + '%');
+                            }
+                        }, false);
+                        
+                        return xhr;
+                    },
+                    success: function(response) {
+                        // Handle success - redirect to browse page
+                        window.location.href = '@Url.Action("Browse", "Media")';
+                    },
+                    error: function(xhr, status, error) {
+                        // Handle error
+                        progressBar.hide();
+                        submitButton.prop('disabled', false).html(originalButtonText);
+                        
+                        var errorMessage = 'Upload failed. Please try again.';
+                        if (xhr.responseJSON && xhr.responseJSON.message) {
+                            errorMessage = xhr.responseJSON.message;
+                        } else if (xhr.responseText) {
+                            // Try to extract error from HTML response
+                            var tempDiv = $('<div>').html(xhr.responseText);
+                            var validationSummary = tempDiv.find('[data-valmsg-summary="true"] li').text();
+                            if (validationSummary) {
+                                errorMessage = validationSummary;
+                            }
+                        }
+                        
+                        // Show error message
+                        $('.text-danger').first().text(errorMessage).show();
+                    }
+                });
+            });
+        });
+    </script>
+}

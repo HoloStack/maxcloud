@@ -1,0 +1,50 @@
+@model UpdateStockViewModel
+@{
+    ViewData["Title"] = "Update Stock";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title mb-0"><i class="fas fa-warehouse"></i> Update Stock</h3>
+            </div>
+            <div class="card-body">
+                <div class="alert alert-info">
+                    <strong>Item:</strong> @Model.ItemName<br>
+                    <strong>Current Stock:</strong> @Model.CurrentStock units
+                </div>
+
+                <form asp-action="UpdateStock" method="post">
+                    <input type="hidden" asp-for="ItemId" />
+                    <input type="hidden" asp-for="ItemName" />
+                    <input type="hidden" asp-for="CurrentStock" />
+                    
+                    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+                    
+                    <div class="mb-3">
+                        <label asp-for="NewStock" class="form-label">New Stock Quantity</label>
+                        <input asp-for="NewStock" class="form-control" type="number" min="0" />
+                        <span asp-validation-for="NewStock" class="text-danger"></span>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label asp-for="Reason" class="form-label">Reason for Change (Optional)</label>
+                        <textarea asp-for="Reason" class="form-control" rows="3" placeholder="e.g., Inventory adjustment, New shipment, etc."></textarea>
+                    </div>
+                    
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <a href="@Url.Action("ManageItems")" class="btn btn-outline-secondary me-md-2">Cancel</a>
+                        <button type="submit" class="btn btn-success">
+                            <i class="fas fa-save"></i> Update Stock
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

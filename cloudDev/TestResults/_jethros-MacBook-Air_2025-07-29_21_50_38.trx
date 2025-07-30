@@ -1,0 +1,278 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestRun id="eb6efcae-8e78-4daa-b20c-0090411e6a1d" name="@jethros-MacBook-Air 2025-07-29 21:50:38" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Times creation="2025-07-29T21:50:38.2481430+02:00" queuing="2025-07-29T21:50:38.2481430+02:00" start="2025-07-29T21:50:37.0330600+02:00" finish="2025-07-29T21:50:38.2548560+02:00" />
+  <TestSettings name="default" id="b8f7a731-77cf-4c57-92f8-516cdc7b06b1">
+    <Deployment runDeploymentRoot="_jethros-MacBook-Air_2025-07-29_21_50_38" />
+  </TestSettings>
+  <Results>
+    <UnitTestResult executionId="e8bd2227-7fb4-4623-812d-2bd4100f3897" testId="e143c4e9-d6d8-7810-743b-246caf798911" testName="cloudDev.Tests.MultimediaFileTypesTest.Should_Handle_Different_Multimedia_File_Types(filename: &quot;video.mp4&quot;, expectedContentType: &quot;video/mp4&quot;, expectedFileType: &quot;Video&quot;)" computerName="jethros-MacBook-Air" duration="00:00:00.0804657" startTime="2025-07-29T21:50:38.1240030+02:00" endTime="2025-07-29T21:50:38.2044920+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="e8bd2227-7fb4-4623-812d-2bd4100f3897">
+      <Output>
+        <ErrorInfo>
+          <Message>Failed to handle video.mp4: Assert.True() Failure
+Expected: True
+Actual:   False</Message>
+          <StackTrace>   at cloudDev.Tests.MultimediaFileTypesTest.Should_Handle_Different_Multimedia_File_Types(String filename, String expectedContentType, String expectedFileType) in /Users/demonkoi/RiderProjects/cloudDev/cloudDev/Tests/MultimediaFileTypesTest.cs:line 66
+--- End of stack trace from previous location ---</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="5fa840f6-1ee9-4d8f-ab93-76710ccae1b0" testId="bb759cc7-8c4e-0b54-9750-f73e57ce1ca4" testName="cloudDev.Tests.MultimediaFileTypesTest.Should_Handle_Different_Multimedia_File_Types(filename: &quot;audio.mp3&quot;, expectedContentType: &quot;audio/mpeg&quot;, expectedFileType: &quot;Audio&quot;)" computerName="jethros-MacBook-Air" duration="00:00:00.0952949" startTime="2025-07-29T21:50:37.9482490+02:00" endTime="2025-07-29T21:50:38.0435590+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="5fa840f6-1ee9-4d8f-ab93-76710ccae1b0">
+      <Output>
+        <ErrorInfo>
+          <Message>Failed to handle audio.mp3: Assert.True() Failure
+Expected: True
+Actual:   False</Message>
+          <StackTrace>   at cloudDev.Tests.MultimediaFileTypesTest.Should_Handle_Different_Multimedia_File_Types(String filename, String expectedContentType, String expectedFileType) in /Users/demonkoi/RiderProjects/cloudDev/cloudDev/Tests/MultimediaFileTypesTest.cs:line 66
+--- End of stack trace from previous location ---</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="2c579215-96d7-42e5-bf16-5cbf3c187699" testId="e0fd2462-cac5-da44-2615-99144eebdacb" testName="cloudDev.Tests.MultimediaFileTypesTest.Should_Handle_Different_Multimedia_File_Types(filename: &quot;image.gif&quot;, expectedContentType: &quot;image/gif&quot;, expectedFileType: &quot;Image&quot;)" computerName="jethros-MacBook-Air" duration="00:00:00.0849564" startTime="2025-07-29T21:50:37.8628870+02:00" endTime="2025-07-29T21:50:37.9478600+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="2c579215-96d7-42e5-bf16-5cbf3c187699">
+      <Output>
+        <ErrorInfo>
+          <Message>Failed to handle image.gif: Assert.True() Failure
+Expected: True
+Actual:   False</Message>
+          <StackTrace>   at cloudDev.Tests.MultimediaFileTypesTest.Should_Handle_Different_Multimedia_File_Types(String filename, String expectedContentType, String expectedFileType) in /Users/demonkoi/RiderProjects/cloudDev/cloudDev/Tests/MultimediaFileTypesTest.cs:line 66
+--- End of stack trace from previous location ---</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="35cbdf69-017c-4622-bab2-e1723b594689" testId="fa36b16d-8f06-3d34-40a0-77a746ba6068" testName="cloudDev.Tests.MultimediaFileTypesTest.Should_Handle_Different_Multimedia_File_Types(filename: &quot;document.pdf&quot;, expectedContentType: &quot;application/pdf&quot;, expectedFileType: &quot;Document&quot;)" computerName="jethros-MacBook-Air" duration="00:00:00.0893713" startTime="2025-07-29T21:50:37.6926550+02:00" endTime="2025-07-29T21:50:37.7822950+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="35cbdf69-017c-4622-bab2-e1723b594689">
+      <Output>
+        <ErrorInfo>
+          <Message>Failed to handle document.pdf: Assert.True() Failure
+Expected: True
+Actual:   False</Message>
+          <StackTrace>   at cloudDev.Tests.MultimediaFileTypesTest.Should_Handle_Different_Multimedia_File_Types(String filename, String expectedContentType, String expectedFileType) in /Users/demonkoi/RiderProjects/cloudDev/cloudDev/Tests/MultimediaFileTypesTest.cs:line 66
+--- End of stack trace from previous location ---</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="a980eae3-0f6d-4225-bda2-45ea6b08e504" testId="ec33f19a-561d-802c-35ba-cd861a111470" testName="cloudDev.Tests.MultimediaFileTypesTest.Should_Handle_Different_Multimedia_File_Types(filename: &quot;image.jpg&quot;, expectedContentType: &quot;image/jpeg&quot;, expectedFileType: &quot;Image&quot;)" computerName="jethros-MacBook-Air" duration="00:00:00.2498458" startTime="2025-07-29T21:50:37.3475610+02:00" endTime="2025-07-29T21:50:37.6038680+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="a980eae3-0f6d-4225-bda2-45ea6b08e504">
+      <Output>
+        <ErrorInfo>
+          <Message>Failed to handle image.jpg: Assert.True() Failure
+Expected: True
+Actual:   False</Message>
+          <StackTrace>   at cloudDev.Tests.MultimediaFileTypesTest.Should_Handle_Different_Multimedia_File_Types(String filename, String expectedContentType, String expectedFileType) in /Users/demonkoi/RiderProjects/cloudDev/cloudDev/Tests/MultimediaFileTypesTest.cs:line 66
+--- End of stack trace from previous location ---</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="9edf6ae4-cd75-4daa-ac50-aed9ef8fd681" testId="f9dd9534-1faf-cddc-07ad-efdcc7d13361" testName="cloudDev.Tests.MultimediaFileTypesTest.Should_Handle_Different_Multimedia_File_Types(filename: &quot;image.png&quot;, expectedContentType: &quot;image/png&quot;, expectedFileType: &quot;Image&quot;)" computerName="jethros-MacBook-Air" duration="00:00:00.0878705" startTime="2025-07-29T21:50:37.6087310+02:00" endTime="2025-07-29T21:50:37.6921520+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="9edf6ae4-cd75-4daa-ac50-aed9ef8fd681">
+      <Output>
+        <ErrorInfo>
+          <Message>Failed to handle image.png: Assert.True() Failure
+Expected: True
+Actual:   False</Message>
+          <StackTrace>   at cloudDev.Tests.MultimediaFileTypesTest.Should_Handle_Different_Multimedia_File_Types(String filename, String expectedContentType, String expectedFileType) in /Users/demonkoi/RiderProjects/cloudDev/cloudDev/Tests/MultimediaFileTypesTest.cs:line 66
+--- End of stack trace from previous location ---</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="11b1a1fa-01ed-4ca1-9c9b-78f19d1d0330" testId="696fa76b-3151-ed8e-0ad6-91508a6024ef" testName="cloudDev.Tests.MultimediaFileTypesTest.Should_Handle_Different_Multimedia_File_Types(filename: &quot;video.avi&quot;, expectedContentType: &quot;video/x-msvideo&quot;, expectedFileType: &quot;Video&quot;)" computerName="jethros-MacBook-Air" duration="00:00:00.0799026" startTime="2025-07-29T21:50:37.7826470+02:00" endTime="2025-07-29T21:50:37.8625450+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="11b1a1fa-01ed-4ca1-9c9b-78f19d1d0330">
+      <Output>
+        <ErrorInfo>
+          <Message>Failed to handle video.avi: Assert.True() Failure
+Expected: True
+Actual:   False</Message>
+          <StackTrace>   at cloudDev.Tests.MultimediaFileTypesTest.Should_Handle_Different_Multimedia_File_Types(String filename, String expectedContentType, String expectedFileType) in /Users/demonkoi/RiderProjects/cloudDev/cloudDev/Tests/MultimediaFileTypesTest.cs:line 66
+--- End of stack trace from previous location ---</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="06276473-3af2-440e-96c3-56fea8b7e68f" testId="15c03eb7-c311-1913-f280-930c9af5c4e2" testName="cloudDev.Tests.MultimediaFileTypesTest.Should_Handle_Different_Multimedia_File_Types(filename: &quot;audio.wav&quot;, expectedContentType: &quot;audio/wav&quot;, expectedFileType: &quot;Audio&quot;)" computerName="jethros-MacBook-Air" duration="00:00:00.0798341" startTime="2025-07-29T21:50:38.0439070+02:00" endTime="2025-07-29T21:50:38.1236800+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="06276473-3af2-440e-96c3-56fea8b7e68f">
+      <Output>
+        <ErrorInfo>
+          <Message>Failed to handle audio.wav: Assert.True() Failure
+Expected: True
+Actual:   False</Message>
+          <StackTrace>   at cloudDev.Tests.MultimediaFileTypesTest.Should_Handle_Different_Multimedia_File_Types(String filename, String expectedContentType, String expectedFileType) in /Users/demonkoi/RiderProjects/cloudDev/cloudDev/Tests/MultimediaFileTypesTest.cs:line 66
+--- End of stack trace from previous location ---</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+  </Results>
+  <TestDefinitions>
+    <UnitTest name="cloudDev.Tests.MultimediaFileTypesTest.Should_Handle_Different_Multimedia_File_Types(filename: &quot;image.gif&quot;, expectedContentType: &quot;image/gif&quot;, expectedFileType: &quot;Image&quot;)" storage="/users/demonkoi/riderprojects/clouddev/clouddev/bin/debug/net9.0/clouddev.dll" id="e0fd2462-cac5-da44-2615-99144eebdacb">
+      <Execution id="2c579215-96d7-42e5-bf16-5cbf3c187699" />
+      <TestMethod codeBase="/Users/demonkoi/RiderProjects/cloudDev/cloudDev/bin/Debug/net9.0/cloudDev.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="cloudDev.Tests.MultimediaFileTypesTest" name="Should_Handle_Different_Multimedia_File_Types" />
+    </UnitTest>
+    <UnitTest name="cloudDev.Tests.MultimediaFileTypesTest.Should_Handle_Different_Multimedia_File_Types(filename: &quot;video.mp4&quot;, expectedContentType: &quot;video/mp4&quot;, expectedFileType: &quot;Video&quot;)" storage="/users/demonkoi/riderprojects/clouddev/clouddev/bin/debug/net9.0/clouddev.dll" id="e143c4e9-d6d8-7810-743b-246caf798911">
+      <Execution id="e8bd2227-7fb4-4623-812d-2bd4100f3897" />
+      <TestMethod codeBase="/Users/demonkoi/RiderProjects/cloudDev/cloudDev/bin/Debug/net9.0/cloudDev.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="cloudDev.Tests.MultimediaFileTypesTest" name="Should_Handle_Different_Multimedia_File_Types" />
+    </UnitTest>
+    <UnitTest name="cloudDev.Tests.MultimediaFileTypesTest.Should_Handle_Different_Multimedia_File_Types(filename: &quot;document.pdf&quot;, expectedContentType: &quot;application/pdf&quot;, expectedFileType: &quot;Document&quot;)" storage="/users/demonkoi/riderprojects/clouddev/clouddev/bin/debug/net9.0/clouddev.dll" id="fa36b16d-8f06-3d34-40a0-77a746ba6068">
+      <Execution id="35cbdf69-017c-4622-bab2-e1723b594689" />
+      <TestMethod codeBase="/Users/demonkoi/RiderProjects/cloudDev/cloudDev/bin/Debug/net9.0/cloudDev.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="cloudDev.Tests.MultimediaFileTypesTest" name="Should_Handle_Different_Multimedia_File_Types" />
+    </UnitTest>
+    <UnitTest name="cloudDev.Tests.MultimediaFileTypesTest.Should_Handle_Different_Multimedia_File_Types(filename: &quot;image.png&quot;, expectedContentType: &quot;image/png&quot;, expectedFileType: &quot;Image&quot;)" storage="/users/demonkoi/riderprojects/clouddev/clouddev/bin/debug/net9.0/clouddev.dll" id="f9dd9534-1faf-cddc-07ad-efdcc7d13361">
+      <Execution id="9edf6ae4-cd75-4daa-ac50-aed9ef8fd681" />
+      <TestMethod codeBase="/Users/demonkoi/RiderProjects/cloudDev/cloudDev/bin/Debug/net9.0/cloudDev.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="cloudDev.Tests.MultimediaFileTypesTest" name="Should_Handle_Different_Multimedia_File_Types" />
+    </UnitTest>
+    <UnitTest name="cloudDev.Tests.MultimediaFileTypesTest.Should_Handle_Different_Multimedia_File_Types(filename: &quot;image.jpg&quot;, expectedContentType: &quot;image/jpeg&quot;, expectedFileType: &quot;Image&quot;)" storage="/users/demonkoi/riderprojects/clouddev/clouddev/bin/debug/net9.0/clouddev.dll" id="ec33f19a-561d-802c-35ba-cd861a111470">
+      <Execution id="a980eae3-0f6d-4225-bda2-45ea6b08e504" />
+      <TestMethod codeBase="/Users/demonkoi/RiderProjects/cloudDev/cloudDev/bin/Debug/net9.0/cloudDev.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="cloudDev.Tests.MultimediaFileTypesTest" name="Should_Handle_Different_Multimedia_File_Types" />
+    </UnitTest>
+    <UnitTest name="cloudDev.Tests.MultimediaFileTypesTest.Should_Handle_Different_Multimedia_File_Types(filename: &quot;audio.wav&quot;, expectedContentType: &quot;audio/wav&quot;, expectedFileType: &quot;Audio&quot;)" storage="/users/demonkoi/riderprojects/clouddev/clouddev/bin/debug/net9.0/clouddev.dll" id="15c03eb7-c311-1913-f280-930c9af5c4e2">
+      <Execution id="06276473-3af2-440e-96c3-56fea8b7e68f" />
+      <TestMethod codeBase="/Users/demonkoi/RiderProjects/cloudDev/cloudDev/bin/Debug/net9.0/cloudDev.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="cloudDev.Tests.MultimediaFileTypesTest" name="Should_Handle_Different_Multimedia_File_Types" />
+    </UnitTest>
+    <UnitTest name="cloudDev.Tests.MultimediaFileTypesTest.Should_Handle_Different_Multimedia_File_Types(filename: &quot;video.avi&quot;, expectedContentType: &quot;video/x-msvideo&quot;, expectedFileType: &quot;Video&quot;)" storage="/users/demonkoi/riderprojects/clouddev/clouddev/bin/debug/net9.0/clouddev.dll" id="696fa76b-3151-ed8e-0ad6-91508a6024ef">
+      <Execution id="11b1a1fa-01ed-4ca1-9c9b-78f19d1d0330" />
+      <TestMethod codeBase="/Users/demonkoi/RiderProjects/cloudDev/cloudDev/bin/Debug/net9.0/cloudDev.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="cloudDev.Tests.MultimediaFileTypesTest" name="Should_Handle_Different_Multimedia_File_Types" />
+    </UnitTest>
+    <UnitTest name="cloudDev.Tests.MultimediaFileTypesTest.Should_Handle_Different_Multimedia_File_Types(filename: &quot;audio.mp3&quot;, expectedContentType: &quot;audio/mpeg&quot;, expectedFileType: &quot;Audio&quot;)" storage="/users/demonkoi/riderprojects/clouddev/clouddev/bin/debug/net9.0/clouddev.dll" id="bb759cc7-8c4e-0b54-9750-f73e57ce1ca4">
+      <Execution id="5fa840f6-1ee9-4d8f-ab93-76710ccae1b0" />
+      <TestMethod codeBase="/Users/demonkoi/RiderProjects/cloudDev/cloudDev/bin/Debug/net9.0/cloudDev.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="cloudDev.Tests.MultimediaFileTypesTest" name="Should_Handle_Different_Multimedia_File_Types" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestEntries>
+    <TestEntry testId="e143c4e9-d6d8-7810-743b-246caf798911" executionId="e8bd2227-7fb4-4623-812d-2bd4100f3897" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="bb759cc7-8c4e-0b54-9750-f73e57ce1ca4" executionId="5fa840f6-1ee9-4d8f-ab93-76710ccae1b0" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="e0fd2462-cac5-da44-2615-99144eebdacb" executionId="2c579215-96d7-42e5-bf16-5cbf3c187699" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="fa36b16d-8f06-3d34-40a0-77a746ba6068" executionId="35cbdf69-017c-4622-bab2-e1723b594689" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="ec33f19a-561d-802c-35ba-cd861a111470" executionId="a980eae3-0f6d-4225-bda2-45ea6b08e504" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="f9dd9534-1faf-cddc-07ad-efdcc7d13361" executionId="9edf6ae4-cd75-4daa-ac50-aed9ef8fd681" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="696fa76b-3151-ed8e-0ad6-91508a6024ef" executionId="11b1a1fa-01ed-4ca1-9c9b-78f19d1d0330" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="15c03eb7-c311-1913-f280-930c9af5c4e2" executionId="06276473-3af2-440e-96c3-56fea8b7e68f" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <ResultSummary outcome="Failed">
+    <Counters total="8" executed="8" passed="0" failed="8" error="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+    <Output>
+      <StdOut>[xUnit.net 00:00:00.00] xUnit.net VSTest Adapter v3.1.3+b1b99bdeb3 (64-bit .NET 9.0.7)
+[xUnit.net 00:00:00.04]   Discovering: cloudDev
+[xUnit.net 00:00:00.07]   Discovered:  cloudDev
+[xUnit.net 00:00:00.08]   Starting:    cloudDev
+Upload progress: 0,0%
+Upload progress: 0,0%
+Upload progress: 100,0%
+Upload progress: 100,0%
+Upload progress: 100,0%
+Upload progress: 100,0%
+[xUnit.net 00:00:00.34]       Failed to handle image.jpg: Assert.True() Failure
+[xUnit.net 00:00:00.34]       Expected: True
+[xUnit.net 00:00:00.34]       Actual:   False
+[xUnit.net 00:00:00.34]       Stack Trace:
+[xUnit.net 00:00:00.34]         /Users/demonkoi/RiderProjects/cloudDev/cloudDev/Tests/MultimediaFileTypesTest.cs(66,0): at cloudDev.Tests.MultimediaFileTypesTest.Should_Handle_Different_Multimedia_File_Types(String filename, String expectedContentType, String expectedFileType)
+[xUnit.net 00:00:00.34]         --- End of stack trace from previous location ---
+Upload progress: 0,0%
+Upload progress: 0,0%
+Upload progress: 100,0%
+Upload progress: 100,0%
+Upload progress: 100,0%
+Upload progress: 100,0%
+[xUnit.net 00:00:00.43]       Failed to handle image.png: Assert.True() Failure
+[xUnit.net 00:00:00.43]       Expected: True
+[xUnit.net 00:00:00.43]       Actual:   False
+[xUnit.net 00:00:00.43]       Stack Trace:
+[xUnit.net 00:00:00.43]         /Users/demonkoi/RiderProjects/cloudDev/cloudDev/Tests/MultimediaFileTypesTest.cs(66,0): at cloudDev.Tests.MultimediaFileTypesTest.Should_Handle_Different_Multimedia_File_Types(String filename, String expectedContentType, String expectedFileType)
+[xUnit.net 00:00:00.43]         --- End of stack trace from previous location ---
+Upload progress: 0,0%
+Upload progress: 0,0%
+Upload progress: 100,0%
+Upload progress: 100,0%
+Upload progress: 100,0%
+Upload progress: 100,0%
+[xUnit.net 00:00:00.52]       Failed to handle document.pdf: Assert.True() Failure
+[xUnit.net 00:00:00.52]       Expected: True
+[xUnit.net 00:00:00.52]       Actual:   False
+[xUnit.net 00:00:00.52]       Stack Trace:
+[xUnit.net 00:00:00.52]         /Users/demonkoi/RiderProjects/cloudDev/cloudDev/Tests/MultimediaFileTypesTest.cs(66,0): at cloudDev.Tests.MultimediaFileTypesTest.Should_Handle_Different_Multimedia_File_Types(String filename, String expectedContentType, String expectedFileType)
+[xUnit.net 00:00:00.52]         --- End of stack trace from previous location ---
+Upload progress: 0,0%
+Upload progress: 0,0%
+Upload progress: 100,0%
+Upload progress: 100,0%
+Upload progress: 100,0%
+Upload progress: 100,0%
+[xUnit.net 00:00:00.60]       Failed to handle video.avi: Assert.True() Failure
+[xUnit.net 00:00:00.60]       Expected: True
+[xUnit.net 00:00:00.60]       Actual:   False
+[xUnit.net 00:00:00.60]       Stack Trace:
+[xUnit.net 00:00:00.60]         /Users/demonkoi/RiderProjects/cloudDev/cloudDev/Tests/MultimediaFileTypesTest.cs(66,0): at cloudDev.Tests.MultimediaFileTypesTest.Should_Handle_Different_Multimedia_File_Types(String filename, String expectedContentType, String expectedFileType)
+[xUnit.net 00:00:00.60]         --- End of stack trace from previous location ---
+Upload progress: 0,0%
+Upload progress: 0,0%
+Upload progress: 100,0%
+Upload progress: 100,0%
+Upload progress: 100,0%
+Upload progress: 100,0%
+[xUnit.net 00:00:00.69]       Failed to handle image.gif: Assert.True() Failure
+[xUnit.net 00:00:00.69]       Expected: True
+[xUnit.net 00:00:00.69]       Actual:   False
+[xUnit.net 00:00:00.69]       Stack Trace:
+[xUnit.net 00:00:00.69]         /Users/demonkoi/RiderProjects/cloudDev/cloudDev/Tests/MultimediaFileTypesTest.cs(66,0): at cloudDev.Tests.MultimediaFileTypesTest.Should_Handle_Different_Multimedia_File_Types(String filename, String expectedContentType, String expectedFileType)
+[xUnit.net 00:00:00.69]         --- End of stack trace from previous location ---
+Upload progress: 0,0%
+Upload progress: 0,0%
+Upload progress: 100,0%
+Upload progress: 100,0%
+Upload progress: 100,0%
+Upload progress: 100,0%
+[xUnit.net 00:00:00.78]       Failed to handle audio.mp3: Assert.True() Failure
+[xUnit.net 00:00:00.78]       Expected: True
+[xUnit.net 00:00:00.78]       Actual:   False
+[xUnit.net 00:00:00.78]       Stack Trace:
+[xUnit.net 00:00:00.78]         /Users/demonkoi/RiderProjects/cloudDev/cloudDev/Tests/MultimediaFileTypesTest.cs(66,0): at cloudDev.Tests.MultimediaFileTypesTest.Should_Handle_Different_Multimedia_File_Types(String filename, String expectedContentType, String expectedFileType)
+[xUnit.net 00:00:00.78]         --- End of stack trace from previous location ---
+Upload progress: 0,0%
+Upload progress: 0,0%
+Upload progress: 100,0%
+Upload progress: 100,0%
+Upload progress: 100,0%
+Upload progress: 100,0%
+[xUnit.net 00:00:00.86]       Failed to handle audio.wav: Assert.True() Failure
+[xUnit.net 00:00:00.86]       Expected: True
+[xUnit.net 00:00:00.86]       Actual:   False
+[xUnit.net 00:00:00.86]       Stack Trace:
+[xUnit.net 00:00:00.86]         /Users/demonkoi/RiderProjects/cloudDev/cloudDev/Tests/MultimediaFileTypesTest.cs(66,0): at cloudDev.Tests.MultimediaFileTypesTest.Should_Handle_Different_Multimedia_File_Types(String filename, String expectedContentType, String expectedFileType)
+[xUnit.net 00:00:00.86]         --- End of stack trace from previous location ---
+Upload progress: 0,0%
+Upload progress: 0,0%
+Upload progress: 100,0%
+Upload progress: 100,0%
+Upload progress: 100,0%
+Upload progress: 100,0%
+[xUnit.net 00:00:00.94]       Failed to handle video.mp4: Assert.True() Failure
+[xUnit.net 00:00:00.94]       Expected: True
+[xUnit.net 00:00:00.94]       Actual:   False
+[xUnit.net 00:00:00.94]       Stack Trace:
+[xUnit.net 00:00:00.94]         /Users/demonkoi/RiderProjects/cloudDev/cloudDev/Tests/MultimediaFileTypesTest.cs(66,0): at cloudDev.Tests.MultimediaFileTypesTest.Should_Handle_Different_Multimedia_File_Types(String filename, String expectedContentType, String expectedFileType)
+[xUnit.net 00:00:00.94]         --- End of stack trace from previous location ---
+[xUnit.net 00:00:00.95]   Finished:    cloudDev
+</StdOut>
+    </Output>
+    <RunInfos>
+      <RunInfo computerName="jethros-MacBook-Air" outcome="Error" timestamp="2025-07-29T21:50:37.6051170+02:00">
+        <Text>[xUnit.net 00:00:00.34]     cloudDev.Tests.MultimediaFileTypesTest.Should_Handle_Different_Multimedia_File_Types(filename: "image.jpg", expectedContentType: "image/jpeg", expectedFileType: "Image") [FAIL]</Text>
+      </RunInfo>
+      <RunInfo computerName="jethros-MacBook-Air" outcome="Error" timestamp="2025-07-29T21:50:37.6924270+02:00">
+        <Text>[xUnit.net 00:00:00.43]     cloudDev.Tests.MultimediaFileTypesTest.Should_Handle_Different_Multimedia_File_Types(filename: "image.png", expectedContentType: "image/png", expectedFileType: "Image") [FAIL]</Text>
+      </RunInfo>
+      <RunInfo computerName="jethros-MacBook-Air" outcome="Error" timestamp="2025-07-29T21:50:37.7828730+02:00">
+        <Text>[xUnit.net 00:00:00.52]     cloudDev.Tests.MultimediaFileTypesTest.Should_Handle_Different_Multimedia_File_Types(filename: "document.pdf", expectedContentType: "application/pdf", expectedFileType: "Document") [FAIL]</Text>
+      </RunInfo>
+      <RunInfo computerName="jethros-MacBook-Air" outcome="Error" timestamp="2025-07-29T21:50:37.8628700+02:00">
+        <Text>[xUnit.net 00:00:00.60]     cloudDev.Tests.MultimediaFileTypesTest.Should_Handle_Different_Multimedia_File_Types(filename: "video.avi", expectedContentType: "video/x-msvideo", expectedFileType: "Video") [FAIL]</Text>
+      </RunInfo>
+      <RunInfo computerName="jethros-MacBook-Air" outcome="Error" timestamp="2025-07-29T21:50:37.9481690+02:00">
+        <Text>[xUnit.net 00:00:00.69]     cloudDev.Tests.MultimediaFileTypesTest.Should_Handle_Different_Multimedia_File_Types(filename: "image.gif", expectedContentType: "image/gif", expectedFileType: "Image") [FAIL]</Text>
+      </RunInfo>
+      <RunInfo computerName="jethros-MacBook-Air" outcome="Error" timestamp="2025-07-29T21:50:38.0438590+02:00">
+        <Text>[xUnit.net 00:00:00.78]     cloudDev.Tests.MultimediaFileTypesTest.Should_Handle_Different_Multimedia_File_Types(filename: "audio.mp3", expectedContentType: "audio/mpeg", expectedFileType: "Audio") [FAIL]</Text>
+      </RunInfo>
+      <RunInfo computerName="jethros-MacBook-Air" outcome="Error" timestamp="2025-07-29T21:50:38.1239560+02:00">
+        <Text>[xUnit.net 00:00:00.86]     cloudDev.Tests.MultimediaFileTypesTest.Should_Handle_Different_Multimedia_File_Types(filename: "audio.wav", expectedContentType: "audio/wav", expectedFileType: "Audio") [FAIL]</Text>
+      </RunInfo>
+      <RunInfo computerName="jethros-MacBook-Air" outcome="Error" timestamp="2025-07-29T21:50:38.2047240+02:00">
+        <Text>[xUnit.net 00:00:00.94]     cloudDev.Tests.MultimediaFileTypesTest.Should_Handle_Different_Multimedia_File_Types(filename: "video.mp4", expectedContentType: "video/mp4", expectedFileType: "Video") [FAIL]</Text>
+      </RunInfo>
+    </RunInfos>
+  </ResultSummary>
+</TestRun>

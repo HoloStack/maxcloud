@@ -1,0 +1,120 @@
+@using cloudDev.Helpers
+@model StoreIndexViewModel
+@{
+    ViewData["Title"] = "Store";
+}
+
+<div class="row mb-4">
+    <div class="col-12">
+        <h1 class="display-4 text-center mb-4">Welcome to maxStore</h1>
+        
+        <!-- Search and Filter Section -->
+        <div class="card filter-card mb-4">
+            <div class="card-body">
+                <form method="get" asp-action="Index">
+                    <div class="row g-3">
+                        <div class="col-md-4">
+                            <label for="searchQuery" class="form-label">Search Products</label>
+                            <input type="text" class="form-control" id="searchQuery" name="searchQuery" value="@Model.SearchQuery" placeholder="Search by name or description...">
+                        </div>
+                        <div class="col-md-2">
+                            <label for="category" class="form-label">Category</label>
+                            <select class="form-select" id="category" name="category">
+                                <option value="">All Categories</option>
+                                @foreach (var cat in Model.Categories)
+                                {
+                                    <option value="@cat" selected="@(cat == Model.SelectedCategory)">@cat</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <label for="sortBy" class="form-label">Sort By</label>
+                            <select class="form-select" id="sortBy" name="sortBy">
+                                <option value="name_asc" selected="@(Model.SortBy == "name_asc")">Name (A-Z)</option>
+                                <option value="name_desc" selected="@(Model.SortBy == "name_desc")">Name (Z-A)</option>
+                                <option value="price_asc" selected="@(Model.SortBy == "price_asc")">Price (Low-High)</option>
+                                <option value="price_desc" selected="@(Model.SortBy == "price_desc")">Price (High-Low)</option>
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <label for="minPrice" class="form-label">Min Price</label>
+                            <input type="number" class="form-control" id="minPrice" name="minPrice" value="@Model.MinPrice" step="0.01" min="0">
+                        </div>
+                        <div class="col-md-2">
+                            <label for="maxPrice" class="form-label">Max Price</label>
+                            <input type="number" class="form-control" id="maxPrice" name="maxPrice" value="@Model.MaxPrice" step="0.01" min="0">
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-primary me-2">Filter</button>
+                            <a href="@Url.Action("Index")" class="btn btn-outline-secondary">Clear Filters</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <!-- Products Grid -->
+        @if (Model.Items.Any())
+        {
+            <div class="row">
+                @foreach (var item in Model.Items)
+                {
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="card h-100">
+                            @if (!string.IsNullOrEmpty(item.Image))
+                            {
+                                <img src="@Url.Action("Serve", "Image", new { url = item.Image })" class="card-img-top" alt="@item.Name" style="height: 200px; object-fit: cover;">
+                            }
+                            else
+                            {
+                                <div class="card-img-top bg-light d-flex align-items-center justify-content-center" style="height: 200px;">
+                                    <i class="fas fa-image fa-3x text-muted"></i>
+                                </div>
+                            }
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">@item.Name</h5>
+                                <p class="card-text flex-grow-1">@item.Description</p>
+                                <div class="mb-2">
+                                    <span class="badge bg-secondary">@item.Category</span>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h6 class="text-primary mb-0">@CurrencyHelper.FormatAsRand(item.price)</h6>
+                                        <small class="text-muted">@item.quantity in stock</small>
+                                    </div>
+                                    @if (User.Identity.IsAuthenticated && item.quantity > 0)
+                                    {
+                                        <form asp-controller="Items" asp-action="AddToCart" method="post" class="d-inline">
+                                            <input type="hidden" name="itemId" value="@item.RowKey" />
+                                            <button type="submit" class="btn btn-primary btn-sm">
+                                                <i class="fas fa-cart-plus"></i> Add to Cart
+                                            </button>
+                                        </form>
+                                    }
+                                    else if (!User.Identity.IsAuthenticated)
+                                    {
+                                        <a href="@Url.Action("Login", "Account")" class="btn btn-outline-primary btn-sm">Login to Buy</a>
+                                    }
+                                    else
+                                    {
+                                        <button class="btn btn-secondary btn-sm" disabled>Out of Stock</button>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+        else
+        {
+            <div class="text-center py-5">
+                <i class="fas fa-shopping-basket fa-3x text-muted mb-3"></i>
+                <h4>No products found</h4>
+                <p class="text-muted">Try adjusting your search criteria or browse all categories.</p>
+            </div>
+        }
+    </div>
+</div>

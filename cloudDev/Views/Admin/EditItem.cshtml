@@ -1,0 +1,168 @@
+@using cloudDev.Helpers
+@model EditItemViewModel
+@{
+    ViewData["Title"] = "Edit Item";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2><i class="fas fa-edit"></i> Edit Item</h2>
+            <a href="@Url.Action("ManageItems")" class="btn btn-secondary">
+                <i class="fas fa-arrow-left"></i> Back to Items
+            </a>
+        </div>
+
+        <div class="card">
+            <div class="card-body">
+                <form asp-action="EditItem" method="post" enctype="multipart/form-data">
+                    <input type="hidden" asp-for="RowKey" />
+                    <input type="hidden" asp-for="CurrentImage" />
+                    
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="mb-3">
+                                <label asp-for="Name" class="form-label">Item Name</label>
+                                <input asp-for="Name" class="form-control" placeholder="Enter item name">
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                            </div>
+
+                            <div class="mb-3">
+                                <label asp-for="Description" class="form-label">Description</label>
+                                <textarea asp-for="Description" class="form-control" rows="4" placeholder="Enter item description"></textarea>
+                                <span asp-validation-for="Description" class="text-danger"></span>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label asp-for="Price" class="form-label">Price (R)</label>
+                                        <input asp-for="Price" class="form-control" type="number" step="0.01" min="0.01" placeholder="0.00">
+                                        <span asp-validation-for="Price" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label asp-for="Quantity" class="form-label">Stock Quantity</label>
+                                        <input asp-for="Quantity" class="form-control" type="number" min="0" placeholder="0">
+                                        <span asp-validation-for="Quantity" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label asp-for="Category" class="form-label">Category</label>
+                                <select asp-for="Category" class="form-select">
+                                    <option value="">Select a category</option>
+                                    @foreach (var category in EditItemViewModel.AvailableCategories)
+                                    {
+                                        <option value="@category" selected="@(Model.Category == category)">@category</option>
+                                    }
+                                </select>
+                                <span asp-validation-for="Category" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label class="form-label">Current Image</label>
+                                <div class="text-center">
+                                    @if (!string.IsNullOrEmpty(Model.CurrentImage))
+                                    {
+                                        <img src="@Url.Action("Serve", "Image", new { url = Model.CurrentImage })" 
+                                             alt="Current item image" 
+                                             class="img-thumbnail mb-3" 
+                                             style="max-width: 200px; max-height: 200px; object-fit: cover;">
+                                    }
+                                    else
+                                    {
+                                        <div class="bg-light rounded d-flex align-items-center justify-content-center mb-3" 
+                                             style="width: 200px; height: 200px; margin: 0 auto;">
+                                            <i class="fas fa-image fa-3x text-muted"></i>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label asp-for="NewImageFile" class="form-label">Upload New Image (Optional)</label>
+                                <input asp-for="NewImageFile" type="file" class="form-control" accept="image/*">
+                                <div class="form-text">Leave blank to keep current image. Supported formats: JPG, PNG, GIF</div>
+                            </div>
+
+                            <div class="mb-3">
+                                <div class="card bg-light">
+                                    <div class="card-body">
+                                        <h6 class="card-title">Item Preview</h6>
+                                        <div class="text-center">
+                                            <strong>@Model.Name</strong><br>
+                                            <span class="text-muted">@Model.Category</span><br>
+                                            <span class="fw-bold text-success">@CurrencyHelper.FormatAsRand(Model.Price)</span><br>
+                                            <small class="text-muted">Stock: @Model.Quantity units</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-between">
+                        <a href="@Url.Action("ManageItems")" class="btn btn-outline-secondary">
+                            <i class="fas fa-times"></i> Cancel
+                        </a>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save"></i> Update Item
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Preview image on file selection
+        document.querySelector('input[type="file"]').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = document.querySelector('.img-thumbnail') || document.createElement('img');
+                    img.src = e.target.result;
+                    img.className = 'img-thumbnail mb-3';
+                    img.style.maxWidth = '200px';
+                    img.style.maxHeight = '200px';
+                    img.style.objectFit = 'cover';
+                    img.alt = 'New item image';
+                    
+                    // Replace the placeholder div if it exists
+                    const placeholder = document.querySelector('.bg-light.rounded');
+                    if (placeholder) {
+                        placeholder.parentNode.replaceChild(img, placeholder);
+                    }
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Update preview card when form fields change
+        function updatePreview() {
+            const name = document.querySelector('input[name="Name"]').value || 'Item Name';
+            const category = document.querySelector('select[name="Category"]').value || 'Category';
+            const price = parseFloat(document.querySelector('input[name="Price"]').value) || 0;
+            const quantity = parseInt(document.querySelector('input[name="Quantity"]').value) || 0;
+            
+            document.querySelector('.card-body strong').textContent = name;
+            document.querySelector('.card-body .text-muted').textContent = category;
+            document.querySelector('.card-body .fw-bold').textContent = 'R' + price.toFixed(2);
+            document.querySelector('.card-body small').textContent = 'Stock: ' + quantity + ' units';
+        }
+
+        // Add event listeners for real-time preview updates
+        document.querySelector('input[name="Name"]').addEventListener('input', updatePreview);
+        document.querySelector('select[name="Category"]').addEventListener('change', updatePreview);
+        document.querySelector('input[name="Price"]').addEventListener('input', updatePreview);
+        document.querySelector('input[name="Quantity"]').addEventListener('input', updatePreview);
+    </script>
+}
